@@ -303,7 +303,7 @@ function (
 
     initializeAuthenticationBroker: function () {
       if (! this._authenticationBroker) {
-        if (this._isFxDesktop() && this._isWebChannel()) {
+        if (this._isFxDesktop() && this._isIframeContext()) {
           this._authenticationBroker = new SyncWebChannelAuthenticationBroker({
             window: this._window,
             relier: this._relier

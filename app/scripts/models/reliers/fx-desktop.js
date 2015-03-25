@@ -15,13 +15,19 @@
 define([
   'underscore',
   'models/reliers/relier',
-  'lib/service-name'
-], function (_, Relier, ServiceNameTranslator) {
+  'lib/service-name',
+  'lib/constants'
+], function (_, Relier, ServiceNameTranslator, Constants) {
 
   var FxDesktopRelier = Relier.extend({
     defaults: _.extend({}, Relier.prototype.defaults, {
       campaign: null,
-      context: null,
+      // hard code the desktop context. The context is decided in app-start
+      // and decoupled from the context query parameter. For example,
+      // both service=sync&context=fx_desktop_v1 and
+      // service=sync&context=iframe both use the FxDesktopRelier, and
+      // the relier for both need context=fx_desktop_v1
+      context: Constants.FX_DESKTOP_CONTEXT,
       entrypoint: null,
       migration: null
     }),
@@ -38,7 +44,6 @@ define([
       var self = this;
       return Relier.prototype.fetch.call(self)
         .then(function () {
-          self.importSearchParam('context');
           self.importSearchParam('entrypoint');
           self.importSearchParam('campaign');
           self.importSearchParam('migration');
