@@ -48,6 +48,7 @@ define([
   'models/auth_brokers/web-channel',
   'models/auth_brokers/redirect',
   'models/auth_brokers/iframe',
+  'models/auth_brokers/sync-web-channel',
   'models/user',
   'models/form-prefill',
   'models/notifications',
@@ -84,6 +85,7 @@ function (
   WebChannelAuthenticationBroker,
   RedirectAuthenticationBroker,
   IframeAuthenticationBroker,
+  SyncWebChannelAuthenticationBroker,
   User,
   FormPrefill,
   Notifications,
@@ -301,7 +303,12 @@ function (
 
     initializeAuthenticationBroker: function () {
       if (! this._authenticationBroker) {
-        if (this._isFxDesktop()) {
+        if (this._isFxDesktop() && this._isWebChannel()) {
+          this._authenticationBroker = new SyncWebChannelAuthenticationBroker({
+            window: this._window,
+            relier: this._relier
+          });
+        } else if (this._isFxDesktop()) {
           this._authenticationBroker = new FxDesktopAuthenticationBroker({
             window: this._window,
             relier: this._relier,

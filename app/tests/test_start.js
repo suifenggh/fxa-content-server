@@ -15,6 +15,9 @@ function (Translator, Session) {
     '../tests/spec/lib/channels/web',
     '../tests/spec/lib/channels/inter-tab',
     '../tests/spec/lib/channels/iframe',
+    '../tests/spec/lib/channels/duplex',
+    '../tests/spec/lib/channels/senders/web-channel',
+    '../tests/spec/lib/channels/receivers/web-channel',
     '../tests/spec/lib/xss',
     '../tests/spec/lib/url',
     '../tests/spec/lib/session',
@@ -95,7 +98,8 @@ function (Translator, Session) {
     '../tests/spec/models/auth_brokers/web-channel',
     '../tests/spec/models/auth_brokers/redirect',
     '../tests/spec/models/auth_brokers/oauth',
-    '../tests/spec/models/auth_brokers/iframe'
+    '../tests/spec/models/auth_brokers/iframe',
+    '../tests/spec/models/auth_brokers/sync-web-channel'
   ];
 
   /*global mocha */
