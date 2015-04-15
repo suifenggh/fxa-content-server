@@ -57,7 +57,7 @@
 
   @include respond-to('trustedUI') {
     margin-bottom: 10px;
-    
+
     h2 {
       font-size: $base-font;
     }
@@ -71,5 +71,20 @@
   ul {
     margin-left: 0;
     padding-left: 20px;
+  }
+
+  // Links cannot be opened from the TOS/PP text when signing
+  // in to Sync on Fx for iOS. Show the hrefs next to the link.
+  .fx-ios-sync & {
+    a[href] {
+      color: $text-color;
+      cursor: default;
+      pointer-events: none;
+      text-decoration: none;
+    }
+
+    a[href]::after {
+      content: " [" attr(href) "] ";
+    }
   }
 }
